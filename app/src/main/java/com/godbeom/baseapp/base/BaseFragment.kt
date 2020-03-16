@@ -1,4 +1,4 @@
-package com.osstem.eos.base
+package com.godbeom.baseapp.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

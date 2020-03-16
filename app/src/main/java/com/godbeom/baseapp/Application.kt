@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import com.godbeom.baseapp.di.PersistenceModule
 import com.godbeom.baseapp.di.commModule
+import com.godbeom.baseapp.di.networkModule
 import com.godbeom.baseapp.util.LanguageManager
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
@@ -18,7 +19,7 @@ class Application: Application(){
 
         startKoin {
             androidContext(baseContext)
-            modules(listOf( commModule, PersistenceModule))
+            modules(listOf( commModule, PersistenceModule, networkModule))
         }
     }
 

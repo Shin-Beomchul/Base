@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "1061878567140",
+    "firebase_url": "https://godbeomtry.firebaseio.com",
+    "project_id": "godbeomtry",
+    "storage_bucket": "godbeomtry.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061878567140:android:6e536d5dbbef1ea940dcf1",
+        "android_client_info": {
+          "package_name": "com.godbeom.baseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061878567140-cd9lofuvbrdgcblnsjj8v9qkn88nhn4p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.godbeom.baseapp",
+            "certificate_hash": "e46244fda70c7718102cf61ed9fc86a801825609"
+          }
+        },
+        {
+          "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcM3ASy79r3DCIgKafo8lQn7QoHP_N6a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061878567140:android:e5dace6f1ed9f793",
+        "android_client_info": {
+          "package_name": "com.house.godbeom.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcM3ASy79r3DCIgKafo8lQn7QoHP_N6a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061878567140:android:7f73228bfd393c33",
+        "android_client_info": {
+          "package_name": "materialcalc.house.godbeom.com.materialcalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcM3ASy79r3DCIgKafo8lQn7QoHP_N6a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061878567140-4pcsqn1gmtaql1nh7oj38cos502lrhq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

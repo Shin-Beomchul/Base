@@ -8,7 +8,6 @@ import com.godbeom.baseapp.base.BaseActivity
 import com.godbeom.baseapp.dto.UserDTO
 import com.godbeom.baseapp.persistence.room.AppDatabase
 import com.godbeom.baseapp.util.ioThread
-import com.godbeom.baseapp.util.mainThread
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
