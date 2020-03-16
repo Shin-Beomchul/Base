@@ -3,11 +3,17 @@ package com.godbeom.baseapp.network.interceptor
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
+
 import android.os.Build
 import okhttp3.Interceptor
 import okhttp3.Response
 
+// force SelfCache (Receive Header change)
+// request : chain.request() App -> Server
+// response : chain.proceed(request) Serve -> App
+// 제크 왓슨 : https://github.com/square/retrofit/issues/693
+// force Cache : https://github.com/square/okhttp/issues/1265
+// https://medium.com/@I_Love_Coding/how-does-okhttp-cache-works-851d37dd29cd
 class CacheInterceptor(var context: Context): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -15,7 +21,6 @@ class CacheInterceptor(var context: Context): Interceptor {
 
         // Get the request from the chain.
         var request = chain.request()
-
         /*
         *  Leveraging the advantage of using Kotlin,
         *  we initialize the request and change its header depending on whether
@@ -37,9 +42,7 @@ class CacheInterceptor(var context: Context): Interceptor {
         *  The 'max-stale' attribute is responsible for this behavior.
         *  The 'only-if-cached' attribute indicates to not retrieve new data; fetch the cache only instead.
         */
-            request.newBuilder().header("Cache-Control",
-                "public, only-if-cached, max-stale=$DISCONNECT_CACHE_TIME"
-            ).build()
+            request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=$DISCONNECT_CACHE_TIME").build()
         // End of if-else statement
 
         // Add the modified request to the chain.
@@ -61,6 +64,7 @@ class CacheInterceptor(var context: Context): Interceptor {
                 actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
                 else -> false
             }
+
         } else {
             connectivityManager.run {
                 connectivityManager.activeNetworkInfo?.run {

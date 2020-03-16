@@ -3,6 +3,7 @@ import android.content.Context
 import com.godbeom.baseapp.network.EndpointAPI
 import com.godbeom.baseapp.network.interceptor.LoggerInterceptor
 import com.godbeom.baseapp.network.NullOnEmptyConverterFactory
+import com.godbeom.baseapp.network.interceptor.CacheInterceptor
 import com.godbeom.baseapp.network.interceptor.RestHeaderInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -31,6 +32,7 @@ import java.io.IOException
 val networkModule = module {
     factory { RestHeaderInterceptor() }
     factory { LoggerInterceptor() }
+    factory { CacheInterceptor(androidContext()) }
     factory { NullOnEmptyConverterFactory() }
 
 
@@ -39,7 +41,7 @@ val networkModule = module {
     single (named("endpointAPI")){ provideEndpointAPI(get(named("endpoint"))) }
 
 
-    single (named("cacheOkHttp")) { provideCacheOkHttpClient(androidContext(), get(), get()) }
+    single (named("cacheOkHttp")) { provideCacheOkHttpClient(androidContext(), get(), get(),get()) }
     single (named("cacheEndpoint")) { provideRetrofit("http://www.google.com", get(named("cacheOkHttp")), get()) }
     single (named("cacheEndpointAPI")){ provideEndpointAPI(get(named("cacheEndpoint"))) }
 
@@ -54,12 +56,13 @@ fun provideOkHttpClient(restHeaderInterceptor: RestHeaderInterceptor, loggerInte
 }
 
 /** httpClient 의존성 주입 */
-fun provideCacheOkHttpClient(context: Context, restHeaderInterceptor: RestHeaderInterceptor, loggerInterceptor: LoggerInterceptor): OkHttpClient {
+fun provideCacheOkHttpClient(context: Context, cacheInterceptor: CacheInterceptor, restHeaderInterceptor: RestHeaderInterceptor, loggerInterceptor: LoggerInterceptor): OkHttpClient {
     val cacheSize = (5 * 1024 * 1024).toLong()
     val cache = Cache(context.cacheDir, cacheSize)
 
     return OkHttpClient().newBuilder()
         .cache(cache)
+        .addInterceptor(cacheInterceptor)
         .addInterceptor(loggerInterceptor)
         .addInterceptor(restHeaderInterceptor).build()
 }
