@@ -1,4 +1,4 @@
-package com.godbeom.baseapp.dto
+package com.godbeom.baseapp.persistence.entity
 
 import androidx.annotation.Nullable
 import androidx.room.Entity

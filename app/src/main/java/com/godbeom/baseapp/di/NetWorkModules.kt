@@ -1,5 +1,6 @@
 package com.godbeom.baseapp.di
 import android.content.Context
+import com.godbeom.baseapp.network.DenJobAPI
 import com.godbeom.baseapp.network.EndpointAPI
 import com.godbeom.baseapp.network.interceptor.LoggerInterceptor
 import com.godbeom.baseapp.network.NullOnEmptyConverterFactory
@@ -11,7 +12,6 @@ import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -19,6 +19,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.threeten.bp.Instant
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
 
@@ -30,15 +31,19 @@ import java.io.IOException
 
 
 val networkModule = module {
-    factory { RestHeaderInterceptor() }
-    factory { LoggerInterceptor() }
-    factory { CacheInterceptor(androidContext()) }
-    factory { NullOnEmptyConverterFactory() }
+    single { RestHeaderInterceptor() }
+    single { LoggerInterceptor() }
+    single { CacheInterceptor(androidContext()) }
+    single { NullOnEmptyConverterFactory() }
 
 
     single (named("basicOkHttp")){ provideOkHttpClient(get(),get()) }
-    single (named("endpoint")) { provideRetrofit("http://www.google.com", get(named("basicOkHttp")), get()) }
     single (named("endpointAPI")){ provideEndpointAPI(get(named("endpoint"))) }
+    single (named("endpoint")) { provideRetrofit("http://www.google.com", get(named("basicOkHttp")), get()) }
+
+
+    single (named("denJobAPI")) { provideDenJobAPI(get(named("denJob")))}
+    single (named("denJob")) { provideRetrofit("https://job.denall.com", get(named("basicOkHttp")), get()) }
 
 
     single (named("cacheOkHttp")) { provideCacheOkHttpClient(androidContext(), get(), get(),get()) }
@@ -81,6 +86,7 @@ fun provideRetrofit(baseURL:String, okHttpClient: OkHttpClient, nullOnEmptyConve
 
 /**Retrofit Interface 의존성 주입 */
 fun provideEndpointAPI(retrofit: Retrofit): EndpointAPI = retrofit.create(EndpointAPI::class.java)
+fun provideDenJobAPI(retrofit: Retrofit): DenJobAPI = retrofit.create(DenJobAPI::class.java)
 
 
 

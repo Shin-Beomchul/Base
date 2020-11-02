@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.godbeom.baseapp.R
 import com.godbeom.baseapp.base.BaseActivity
-import com.godbeom.baseapp.dto.UserDTO
+import com.godbeom.baseapp.persistence.entity.UserDTO
 import com.godbeom.baseapp.persistence.room.AppDatabase
 import com.godbeom.baseapp.util.ioThread
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,7 +28,12 @@ class ActTest : BaseActivity() {
 
         btnUserInsert.setOnClickListener {
             ioThread { val ran = Random.nextInt(0, 9999999)
-                appDatabase.getUserDAO().insert(UserDTO("start+ $ran", "김시작 + $ran"))  }
+                appDatabase.getUserDAO().insert(
+                    UserDTO(
+                        "start+ $ran",
+                        "김시작 + $ran"
+                    )
+                )  }
         }
 
         btnGetUser.setOnClickListener {

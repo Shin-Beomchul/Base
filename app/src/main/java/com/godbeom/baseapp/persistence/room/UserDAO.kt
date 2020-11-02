@@ -4,7 +4,7 @@ import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Query
 import com.godbeom.baseapp.base.BaseDAO
-import com.godbeom.baseapp.dto.UserDTO
+import com.godbeom.baseapp.persistence.entity.UserDTO
 import io.reactivex.Flowable
 
 @Dao

@@ -2,8 +2,12 @@ package com.godbeom.baseapp.di
 
 import androidx.room.Room
 import com.godbeom.baseapp.persistence.room.AppDatabase
+import io.reactivex.Observable
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+import retrofit2.http.FieldMap
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 /**
  * DB관련 Inject
@@ -12,11 +16,8 @@ import org.koin.dsl.module
  */
 
 val PersistenceModule = module {
-    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "push.db")
-        .build() }
+    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "App.db").build() }
 }
-
-
 
 
 

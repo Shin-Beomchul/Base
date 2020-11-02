@@ -3,7 +3,7 @@ package com.godbeom.baseapp.persistence.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.godbeom.baseapp.dto.UserDTO
+import com.godbeom.baseapp.persistence.entity.UserDTO
 
 @Database(entities = [UserDTO::class], version = 1)
 @TypeConverters(value = [DateConverters::class])
