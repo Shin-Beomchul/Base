@@ -5,7 +5,7 @@ data class MatchResponse (
     val result_cd: String? = null,
     val cnt: Int = 0, //total
     val page:Int = 0,
-    val results: List<Match>
+    val list: List<Match>
 ){
     data class Match(
          var offer_no: String? = null,

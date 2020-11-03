@@ -18,10 +18,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+
     compileOptions{
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 
     def APPNAME = ""
 
@@ -78,15 +89,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.2.1'
 
-    //googles - auth
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
-    // Required only if Facebook login support is required
-    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
-    implementation 'com.facebook.android:facebook-android-sdk:6.2.0'
-
-    // Required only if Twitter login support is required
-    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
-    implementation 'com.twitter.sdk.android:twitter-core:3.3.0'
 
     // Koin
     implementation "org.koin:koin-core:$koin_version"
@@ -98,17 +100,14 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
     implementation "io.reactivex.rxjava2:rxjava:2.2.2"
 
-
     // retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
-
 
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
@@ -119,15 +118,29 @@ dependencies {
 //    implementation "android.arch.persistence.room:runtime:1.1.1"
 
 
+    //googles - auth
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    // Required only if Facebook login support is required
+    // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
+    implementation 'com.facebook.android:facebook-android-sdk:6.2.0'
+
+    // Required only if Twitter login support is required
+    // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
+    implementation 'com.twitter.sdk.android:twitter-core:3.3.0'
+
     // etc
+    implementation "io.coil-kt:coil:0.11.0"
     implementation 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
     implementation("com.squareup.moshi:moshi:1.9.2")
+
+
 
     //tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 
 
 }

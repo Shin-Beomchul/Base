@@ -8,18 +8,18 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Image(val hostFileNo: String): Parcelable {
     companion object {
-        private const val PATH = "https://job.denall.com/file.do?cmd=download"
+        private const val PATH = "https://job.denall.com"
     }
 
     @IgnoredOnParcel
-    val small: Uri = Uri.parse("$PATH/&file_no=$hostFileNo")
+    val small: Uri = Uri.parse("$PATH/file.do?cmd=download&file_no=$hostFileNo")
 
     @IgnoredOnParcel
-    val medium: Uri = Uri.parse("$PATH/&file_no=$hostFileNo")
+    val medium: Uri = Uri.parse("$PATH/file.do?cmd=download&file_no=$hostFileNo")
 
     @IgnoredOnParcel
-    val large: Uri = Uri.parse("$PATH/&file_no=$hostFileNo")
+    val large: Uri = Uri.parse("$PATH/file.do?cmd=download&file_no=$hostFileNo")
 
     @IgnoredOnParcel
-    val original: Uri = Uri.parse("$PATH/&file_no=$hostFileNo")
+    val original: Uri = Uri.parse("$PATH/file.do?cmd=download&file_no=$hostFileNo")
 }

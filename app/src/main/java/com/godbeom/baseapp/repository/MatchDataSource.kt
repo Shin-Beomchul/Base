@@ -12,21 +12,21 @@ data class MatchDataSource(var denJobAPI: DenJobAPI, val matchMapper: MatchMappe
     lateinit var userId:String
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Matchs.Match>> {
-        val position = params.key?: 1
+        val page = params.key?: 1
         return denJobAPI
-            .getMatchOfferList(cur_page = position.toString(), user_id = userId, mem_basic_gbn_cd = "108", reg_id = "token", app_ver = "2.0.4")
+            .getMatchOfferList(cur_page = page.toString(), user_id = userId, mem_basic_gbn_cd = "108", reg_id = "token", app_ver = "2.0.4")
             .subscribeOn(Schedulers.io())
             .map { matchMapper.transform(it)}
-            .map { matchs -> toLoadResult(matchs,position) }
+            .map { matchs -> toLoadResult(matchs,page,params) }
             .onErrorReturn { LoadResult.Error(it) }
 
     }
 
-    private fun toLoadResult(data: Matchs, position: Int): LoadResult<Int, Matchs.Match> {
+    private fun toLoadResult(data: Matchs, page: Int, params: LoadParams<Int>): LoadResult<Int, Matchs.Match> {
         return LoadResult.Page(
             data = data.matchs,
-            prevKey = if (position == 1) null else position - 1,
-            nextKey = if (position == data.cnt) null else position + 1
+            prevKey = if (page == 1) null else page - 1,
+            nextKey = if (page == data.cnt) null else page + 1
         )
     }
 

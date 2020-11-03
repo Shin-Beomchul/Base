@@ -11,7 +11,7 @@ class MatchMapper {
             Matchs(
                 cnt = cnt,
                 page = page,
-                matchs = results.map {
+                matchs = list.map {
                     Matchs.Match(
                         0,
                      offer_no = it.offer_no,

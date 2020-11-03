@@ -20,6 +20,7 @@ import org.koin.dsl.module
 import org.threeten.bp.Instant
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
 
@@ -31,10 +32,10 @@ import java.io.IOException
 
 
 val networkModule = module {
-    single { RestHeaderInterceptor() }
-    single { LoggerInterceptor() }
-    single { CacheInterceptor(androidContext()) }
-    single { NullOnEmptyConverterFactory() }
+    factory { RestHeaderInterceptor() }
+    factory { LoggerInterceptor() }
+    factory { CacheInterceptor(androidContext()) }
+    factory { NullOnEmptyConverterFactory() }
 
 
     single (named("basicOkHttp")){ provideOkHttpClient(get(),get()) }
@@ -78,7 +79,8 @@ fun provideRetrofit(baseURL:String, okHttpClient: OkHttpClient, nullOnEmptyConve
         .baseUrl(baseURL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(nullOnEmptyConverterFactory)
-        .addConverterFactory(MoshiConverterFactory.create())
+//        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
