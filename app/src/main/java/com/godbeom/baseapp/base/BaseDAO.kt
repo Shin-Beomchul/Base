@@ -12,6 +12,8 @@ abstract class BaseDAO<T> {
     @JvmSuppressWildcards
     abstract fun insertAll(objects: MutableList<T>)
 
+
+
     @Update
     abstract fun update(vararg entity: T)
 

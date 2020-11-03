@@ -16,7 +16,7 @@ class MatchGridViewHolder(private val binding:ItemMatchBinding) : RecyclerView.V
             binding.poster.load(hospImage?.original){
                 crossfade(true)
             }
-            binding.label.text = "$hosp_nm + $position"
+            binding.label.text = "$hosp_nm + $position + $hosp_id"
         }
     }
 

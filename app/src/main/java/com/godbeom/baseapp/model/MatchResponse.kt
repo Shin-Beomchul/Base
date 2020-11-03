@@ -9,7 +9,7 @@ data class MatchResponse (
 ){
     data class Match(
          var offer_no: String? = null,
-        val hosp_id: String? = null,
+        val hosp_id: String,
         val sangsi_yn: String?= null,
         val mozip_end_day: String? = null,
         val mozip_end_dt: String? = null,

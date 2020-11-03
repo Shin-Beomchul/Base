@@ -10,5 +10,5 @@ import org.koin.dsl.module
 
 
 val mvvmModule = module {
-    viewModel { MatchViewModel(get()) }
+
 }
