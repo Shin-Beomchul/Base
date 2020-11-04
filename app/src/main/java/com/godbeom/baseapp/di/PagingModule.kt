@@ -1,8 +1,8 @@
 package com.godbeom.baseapp.di
 
-import com.godbeom.baseapp.repository.MatchDataSource
-import com.godbeom.baseapp.repository.MatchRepository
-import com.godbeom.baseapp.repository.MatchRepositoryImpl
+import com.godbeom.baseapp.repository.*
+import com.godbeom.baseapp.viewmodel.MatchViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -14,7 +14,10 @@ import org.koin.dsl.module
  */
 
 val pagingModule = module {
-    factory { MatchRepositoryImpl(get()) as MatchRepository }
-    factory { MatchDataSource(get(named("denJobAPI")), get()) }
+    viewModel { MatchViewModel(get(),get()) } // exception maybe Not Impl loadSingle
+    factory { MatchRepositoryImpl(matchDataSource = get())}
+    factory { MatchRepositoryRxRemoteImpl(remoteMediator = get(),appDatabase = get())}
+    factory { MatchRemoteMediator(denJobAPI = get(named("denJobAPI")),database = get(), matchMapper = get()) }
+    factory { MatchDataSource(denJobAPI = get(named("denJobAPI")), matchMapper = get()) }
 
 }
