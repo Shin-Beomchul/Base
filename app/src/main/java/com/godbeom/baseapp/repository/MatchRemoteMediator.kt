@@ -40,6 +40,7 @@ data class MatchRemoteMediator(
 
                         remoteKeys.prevKey ?: INVALID_PAGE
                     }
+                    // 현재로드 된 데이터 세트의 끝에 데이터를로드해야하는 경우
                     LoadType.APPEND -> {
                         val remoteKeys = getRemoteKeyForLastItem(state)
                             ?: throw InvalidObjectException("Result is empty")

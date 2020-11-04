@@ -14,11 +14,7 @@ class MatchRepositoryRxRemoteImpl(val remoteMediator: MatchRemoteMediator, val a
         remoteMediator.userId = userId
       return Pager(
           config = PagingConfig(
-              pageSize = 20,
-              enablePlaceholders = true,
-              maxSize = 30,
-              prefetchDistance = 5,
-              initialLoadSize = 40),
+              pageSize = 20),
           remoteMediator = remoteMediator,
           pagingSourceFactory ={ appDatabase.getMatchDAO().selectAll() }
       ).flowable

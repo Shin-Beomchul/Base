@@ -11,13 +11,12 @@ import io.reactivex.Flowable
 class MatchViewModel(private var matchRepositoryImpl: MatchRepositoryImpl,private var matchRepositoryRxRemoteImpl: MatchRepositoryRxRemoteImpl) :ViewModel() {
 
     fun getMatchsPageData(userId:String): Flowable<PagingData<Matchs.Match>>{
-//        return matchRepositoryImpl.getMatchsPageData(userId)
-       return matchRepositoryRxRemoteImpl.getMatchsPageData(userId) // inDB
+//        return matchRepositoryImpl.getMatchsPageData(userId)  // network Only
+       return matchRepositoryRxRemoteImpl.getMatchsPageData(userId) // network + DB
     }
 
     override fun onCleared() {
         super.onCleared()
     }
-
 
 }
