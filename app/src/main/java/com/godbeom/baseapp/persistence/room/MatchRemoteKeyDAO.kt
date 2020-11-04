@@ -17,7 +17,7 @@ abstract class MatchRemoteKeyDAO: BaseDAO<Matchs.MatchRemotehKeys>(){
     abstract fun insertAllList(remoteKey: List<Matchs.MatchRemotehKeys>)
 
     @Query("SELECT * FROM match_remote_keys WHERE hosp_id = :hosp_id")
-    abstract fun remoteKeysByMovieId(hosp_id: String): Matchs.MatchRemotehKeys?
+    abstract fun remoteKeysByHospId(hosp_id: String): Matchs.MatchRemotehKeys?
 
     @Query("DELETE FROM match_remote_keys")
     abstract fun clearRemoteKeys()

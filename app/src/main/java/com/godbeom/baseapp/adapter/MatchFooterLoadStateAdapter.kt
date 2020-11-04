@@ -3,6 +3,8 @@ package com.godbeom.baseapp.adapter
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
+
+
 class MatchFooterLoadStateAdapter(
         private val adapter: MatchRxPagingAdapter
 ) : LoadStateAdapter<MatchFooterViewHolder>() {

@@ -3,6 +3,7 @@ package com.godbeom.baseapp.view
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.godbeom.baseapp.R
@@ -24,24 +25,31 @@ class ActPage3 : AppCompatActivity() {
 
         matchViewModel = getViewModel()
 
-        mAdapter = MatchRxPagingAdapter()
+        mAdapter = MatchRxPagingAdapter(itemCallback = {
+            Toast.makeText(applicationContext, "${it.hosp_id} :", Toast.LENGTH_SHORT).show()
+        })
+
+        recyclerView.adapter = mAdapter
+
+        recyclerView.adapter = mAdapter.withLoadStateFooter(
+            footer = MatchFooterLoadStateAdapter(
+                mAdapter
+            )
+        )
         val gridLayoutManager = GridLayoutManager(applicationContext, 2)
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = mAdapter.getItemViewType(position)
-
                 return if(viewType == MatchRxPagingAdapter.MATCH_ITEM) 1
                 else 2
             }
         }
         recyclerView.layoutManager = gridLayoutManager
-        recyclerView.adapter = mAdapter
-        recyclerView.adapter = mAdapter.withLoadStateFooter(
-            footer = MatchFooterLoadStateAdapter(mAdapter)
-        )
+
 
         mAdapter.addLoadStateListener { loadState ->
-            val errorState = loadState.source.append as? LoadState.Error
+            val errorState =
+                loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
                 ?: loadState.prepend as? LoadState.Error

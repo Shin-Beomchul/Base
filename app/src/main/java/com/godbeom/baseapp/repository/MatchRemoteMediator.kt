@@ -91,20 +91,20 @@ data class MatchRemoteMediator(
     //
     private fun getRemoteKeyForLastItem(state: PagingState<Int, Matchs.Match>): Matchs.MatchRemotehKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { repo ->
-            database.getMatchRemoteKey().remoteKeysByMovieId(repo.hosp_id)
+            database.getMatchRemoteKey().remoteKeysByHospId(repo.hosp_id)
         }
     }
 
     private fun getRemoteKeyForFirstItem(state: PagingState<Int, Matchs.Match>): Matchs.MatchRemotehKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { movie ->
-            database.getMatchRemoteKey().remoteKeysByMovieId(movie.hosp_id)
+            database.getMatchRemoteKey().remoteKeysByHospId(movie.hosp_id)
         }
     }
 
     private fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Matchs.Match>): Matchs.MatchRemotehKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.hosp_id?.let { id ->
-                database.getMatchRemoteKey().remoteKeysByMovieId(id)
+                database.getMatchRemoteKey().remoteKeysByHospId(id)
             }
         }
     }

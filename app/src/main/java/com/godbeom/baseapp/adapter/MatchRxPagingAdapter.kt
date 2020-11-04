@@ -5,9 +5,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.godbeom.baseapp.persistence.entity.Matchs
 
-//DiffUtil 구필수.
-
-class MatchRxPagingAdapter: PagingDataAdapter<Matchs.Match, MatchItemViewHolder>(COMPARATOR) {
+//DiffUtil 구현필수
+class MatchRxPagingAdapter(
+    val itemCallback: (Matchs.Match) -> Unit): PagingDataAdapter<Matchs.Match, MatchItemViewHolder>(COMPARATOR) {
 
     override fun onBindViewHolder(holder: MatchItemViewHolder, position: Int) {
         getItem(position)?.let {
@@ -16,14 +16,11 @@ class MatchRxPagingAdapter: PagingDataAdapter<Matchs.Match, MatchItemViewHolder>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchItemViewHolder {
-      return MatchItemViewHolder.create(parent)
+      return MatchItemViewHolder(parent,itemCallback)
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> {
-                HEADER
-            }
             itemCount -> {
                 FOOTER_NETWOK_LOADING
             }
@@ -34,7 +31,6 @@ class MatchRxPagingAdapter: PagingDataAdapter<Matchs.Match, MatchItemViewHolder>
     }
 
     companion object {
-        const val HEADER = 1
         const val MATCH_ITEM = 2
         const val FOOTER_NETWOK_LOADING = 3
         private val COMPARATOR = object : DiffUtil.ItemCallback<Matchs.Match>() {
