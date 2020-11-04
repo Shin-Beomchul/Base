@@ -56,7 +56,7 @@ data class MatchRemoteMediator(
                     denJobAPI.getMatchOfferList(cur_page = page.toString(), user_id = userId, mem_basic_gbn_cd = "108", reg_id = "token", app_ver = "2.0.4")
                         .map { matchMapper.transform(it) }
                         .map { insertToDb(page, loadType, it) }
-                        .map<MediatorResult> { MediatorResult.Success(endOfPaginationReached = it.endOfPage) }
+                        .map<MediatorResult> { MediatorResult.Success(endOfPaginationReached = it.matchs.isEmpty()) }
                         .onErrorReturn { MediatorResult.Error(it) }
                 }
 

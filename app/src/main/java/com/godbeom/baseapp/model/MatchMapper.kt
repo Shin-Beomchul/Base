@@ -10,7 +10,7 @@ class MatchMapper {
         return with(matchResponse) {
             Matchs(
                 cnt = cnt,
-                page = page,
+                page = page, //FIXME 값없음
                 matchs = list.map {
                     Matchs.Match(
                         0,
