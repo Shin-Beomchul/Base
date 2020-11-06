@@ -1,4 +1,4 @@
-package com.godbeom.baseapp.view
+package com.godbeom.baseapp.view.act
 
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity

@@ -12,11 +12,14 @@
         android:label="${appLabel}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeMaterial">
-        <activity android:name=".view.ActPage3"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.act.ActNavigation">
+            <nav-graph android:value="@navigation/navigation" />
+        </activity>
+        <activity android:name=".view.act.ActPage3" />
         <activity android:name=".firebase.auth.ActAuthInfo" />
-        <activity android:name=".firebase.auth.FirebaseUiActivity" />
-        <activity android:name=".view.ActTest" />
+        <activity android:name=".firebase.auth.FirebaseUIActivity" />
+        <activity android:name=".view.act.ActTest" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
