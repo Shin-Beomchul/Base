@@ -44,6 +44,7 @@ class Match : Fragment() {
         }
         // 딥링크 접근 후 백키로 홈 startDestnation으로 이동 하고자 할 경우.
         // * 딥링크 접속 후 즉시 종료 하고자 할 경우 주석처리.
+        //  xml을 여러개로 쪼개고 DeepLink
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object: OnBackPressedCallback(true){

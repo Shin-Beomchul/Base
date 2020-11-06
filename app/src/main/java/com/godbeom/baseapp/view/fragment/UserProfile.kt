@@ -23,6 +23,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.Navigation
 import com.godbeom.baseapp.R
 
 
@@ -39,6 +42,19 @@ class UserProfile : Fragment() {
 
         val name = arguments?.getString("userName") ?: "Ali Connors"
         view.findViewById<TextView>(R.id.profile_user_name).text = name
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object: OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+                    Toast.makeText(activity,"딥링크 접근 시 : List , 일반흐름 : 뒷 Stack", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(view).navigateUp()
+                }
+
+            }
+        )
+
         return view
     }
 }
