@@ -3,8 +3,8 @@ package com.godbeom.baseapp
 import android.content.Intent
 import android.os.Bundle
 import com.godbeom.baseapp.base.BaseActivity
-import com.godbeom.baseapp.view.ActPage3
-import com.godbeom.baseapp.view.ActTest
+import com.godbeom.baseapp.view.act.ActNavigation
+import com.godbeom.baseapp.view.act.ActPage3
 
 class MainActivity : BaseActivity() {
 
@@ -14,7 +14,10 @@ class MainActivity : BaseActivity() {
 //        val intent = Intent(this, ActTest::class.java)
 //        this.startActivity(intent)
 
-        val page3 = Intent(this, ActPage3::class.java)
-        this.startActivity(page3)
+//        val page3 = Intent(this, ActPage3::class.java)
+//        this.startActivity(page3)
+
+        val nav = Intent(this, ActNavigation::class.java)
+        this.startActivity(nav)
     }
 }
